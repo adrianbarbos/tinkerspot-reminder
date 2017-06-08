@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/tasks');
 });
+
+
+Route::get('/tasks', 'TaskController@index')->name('tasks');
+
+Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
+Route::post('/tasks/create', 'TaskController@store')->name('tasks.store');
+
+Route::get('/tasks/{task}/edit', 'TaskController@edit')->name('tasks.edit');
+Route::post('/tasks/{task}/edit', 'TaskController@update')->name('tasks.update');
+
+Route::get('/tasks/{task}/toggle', 'TaskController@toggle')->name('tasks.toggle');
+
+Route::delete('/tasks/{task}', 'TaskController@destroy')->name('tasks.delete');
